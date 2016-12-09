@@ -14,12 +14,15 @@ class Index extends Component {
 
   handleMovieButtonClick(event){
     event.preventDefault()
+
     var locationPromise = this.getLocation();
+        //     JK: this logic below, should probably be in the action creator itself.  You want to move logic like this out of the component.
     locationPromise.then(function(loc) { getMovie(loc); }).catch(function(err) { console.log("No location"); });
 
   }
 
   getLocation(callback) {
+//     More logic to move into an action creator.
     var promise = new Promise(function(resolve, reject) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
